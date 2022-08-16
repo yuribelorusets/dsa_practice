@@ -5,26 +5,19 @@
  */
  var twoSum = function(nums, target) {
     
-    let sorted = nums.sort((a, b) => {
-        return a - b;
-    });
+    let hashMap = {};
+    let len = nums.length;
     
-    let i = 0;  
-    let j = sorted.length - 1;
-    
-    while (i < j) {
-        let left = sorted[i];
-        let right = sorted[j];
+    for (let i = 0; i < len; i++) {
         
-        if (left + right === target) return [i, j];
+        let complement = target - nums[i];
         
-        if (left + right < target){
-            i += 1;
+        if (complement in hashMap) {
+            return [i, hashMap[complement]];
         }
         
-        else if (left + right > target) {
-            j -= 1;
-        }
+        hashMap[nums[i]] = i;
     }
+    
     
 };
